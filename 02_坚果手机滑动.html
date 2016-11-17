@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>坚果手机滑动</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.wrap{
+			width: 1200px;
+			height: 600px;
+			border: 1px solid black;
+			padding-top: 100px;
+			position: absolute;
+			left: 50%;
+			margin-left: -600px;
+			top: 100px;
+		}
+		.wrap ul{
+			list-style: none;
+		}
+		.wrap ul li{
+			float: left;
+			width: 14.28%;
+			/*transition: all 1s ease 0s;*/
+		}
+		.wrap ul li img{
+			width: 98%;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul>
+			<li><img src="images/jianguo/1.png" alt=""></li>
+			<li><img src="images/jianguo/2.png" alt=""></li>
+			<li><img src="images/jianguo/3.png" alt=""></li>
+			<li><img src="images/jianguo/4.png" alt=""></li>
+			<li><img src="images/jianguo/5.png" alt=""></li>
+			<li><img src="images/jianguo/6.png" alt=""></li>
+			<li><img src="images/jianguo/7.png" alt=""></li>
+		</ul>
+	</div>
+
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script>
+		$("div").mousemove(function(event) {
+			var x = event.clientX;
+			$("li").each(function(){
+				var zhongzhouX = $(this).offset().left + $(this).width() / 2; 
+				// console.log(Math.abs(x - zhongzhouX));
+				$(this).css("transform", "translateY(" +  Math.abs(x - zhongzhouX) / 4 + "px)");
+			});
+		});
+
+		var arr = [100, 120, 150, 190, 120, 150, 190];
+		$("div").mouseleave(function() {
+			console.log(1);
+			$("li").each(function(i){
+				$(this).css({
+					"transition": "all 0.4s ease 0s", 
+					"transform" : "translateY(" + arr[i] + "px)"
+				});
+			});
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

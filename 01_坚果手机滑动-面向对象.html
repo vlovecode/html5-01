@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>坚果手机滑动</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.wrap{
+			width: 1200px;
+			height: 600px;
+			border: 1px solid black;
+			padding-top: 100px;
+			position: absolute;
+			left: 50%;
+			margin-left: -600px;
+			top: 100px;
+		}
+		.wrap ul{
+			list-style: none;
+		}
+		.wrap ul li{
+			float: left;
+			width: 14.28%;
+			/*transition: all 1s ease 0s;*/
+		}
+		.wrap ul li img{
+			width: 98%;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul>
+			<li><img src="images/jianguo/1.png" alt=""></li>
+			<li><img src="images/jianguo/2.png" alt=""></li>
+			<li><img src="images/jianguo/3.png" alt=""></li>
+			<li><img src="images/jianguo/4.png" alt=""></li>
+			<li><img src="images/jianguo/5.png" alt=""></li>
+			<li><img src="images/jianguo/6.png" alt=""></li>
+			<li><img src="images/jianguo/7.png" alt=""></li>
+		</ul>
+	</div>
+
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script>
+		var shoujiArr = [];
+		function Shouji($dom){
+			this.$dom = $dom;
+			this.zhongzhoux = this.$dom.offset().left + this.$dom.width() / 2;
+			// console.log(this.$dom.width() / 2);
+			// console.log(this.$dom.offset().left);150
+			// console.log(this.zhongzhoux);
+			shoujiArr.push(this);
+		}
+
+		Shouji.prototype.listenMouse = function(x){
+			this.$dom.css("transform", "translateY(" +  Math.abs(x - this.zhongzhoux) / 4 + "px)");
+		};
+
+		//鼠标作为发布者, 此时所有的 shouji 对象都在 shoujiArr 里.
+		$("div").mousemove(function(event) {
+			var x = event.clientX;
+			for(var i = 0, length = shoujiArr.length; i < length; i++){
+				shoujiArr[i].listenMouse(x);
+			}
+		});
+
+		$("li").each(function(){
+			new Shouji($(this));
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
